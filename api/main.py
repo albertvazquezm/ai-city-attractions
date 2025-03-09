@@ -1,5 +1,5 @@
 from typing import Union
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from data.cities import cities
 import ollama
 import asyncio
@@ -32,8 +32,12 @@ async def get_attraction_description(attraction: str, city: str) -> Dict[str, st
     response = await llm.generate(model='llama2', prompt=prompt)
     return {"name": attraction, "description": response.response}
 
-@app.get("/city/details")
-async def get_city_details(city_name: str):
+@app.get("/city/{city_slug}")
+async def get_city_details(city_slug: str):
+    city = next((city for city in cities if city["slug"] == city_slug), None)
+    if not city:
+        raise HTTPException(status_code=404, detail="City not found")
+    '''
     try:
         # Get city description and attraction names concurrently
         city_description, attractions = await asyncio.gather(
@@ -53,4 +57,5 @@ async def get_city_details(city_name: str):
         }
     except Exception as e:
         return {"error": str(e)}
+    '''
 

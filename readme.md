@@ -1,6 +1,6 @@
-# City Search App
+# City Attractions
 
-A simple React application built with Remix that allows users to search for cities. The backend is a Python FastAPI application that is hosted on [Render](https://render.com/).
+A simple React application built with Remix that allows users to search for cities and see the attractions in the city. The backend is a Python FastAPI application that is hosted on [Render](https://render.com/).
 
 ## Features
 

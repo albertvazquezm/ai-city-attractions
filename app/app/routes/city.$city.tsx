@@ -1,6 +1,19 @@
 import { Attraction } from "../components/city/attraction";
+import { data, LoaderFunctionArgs } from "@remix-run/node";
+import { getCityAttractions } from "../api/api.server";
+import { useLoaderData } from "@remix-run/react";
+
+export async function loader({ params }: LoaderFunctionArgs) {
+    const citySlug = params.city;
+    if(!citySlug) {
+        throw data({error: 'City not found'})
+    }
+    const cityAttractions = await getCityAttractions(citySlug);
+    return data(cityAttractions);
+}
 
 export default function City() {
+    const cityAttractions = useLoaderData<typeof loader>();
     return (
         <div className="min-h-screen">
             <div className="relative h-96">

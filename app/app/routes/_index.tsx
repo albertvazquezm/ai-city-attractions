@@ -75,7 +75,7 @@ export default function Index() {
   return (
     <div className="min-h-screen flex flex-col items-center pt-32 px-4">
       <h1 className="text-4xl font-bold mb-8 text-gray-800 tracking-tight">
-        City Recommendations
+        City Attractions
       </h1>
 
       <div className="max-w-2xl mx-auto w-full relative">
