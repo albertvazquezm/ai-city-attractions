@@ -1,8 +1,13 @@
-import { data, Link, useLoaderData, useNavigate, useSearchParams } from "@remix-run/react";
+import { data, Link, MetaFunction, useLoaderData, useNavigate, useSearchParams } from "@remix-run/react";
 import { useState, useEffect, KeyboardEvent, useRef } from "react";
 import { getCities } from "../api/api.server";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { useDebounce } from 'use-debounce';
+
+export const meta: MetaFunction = () => [
+    { title: "City Attractions" },
+    { name: "description", content: "Find the best attractions in your favorite cities" },
+];
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
